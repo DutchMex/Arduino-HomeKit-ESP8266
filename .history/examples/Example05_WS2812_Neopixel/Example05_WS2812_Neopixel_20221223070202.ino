@@ -24,8 +24,7 @@
 #define LOG_D(fmt, ...)   printf_P(PSTR(fmt "\n") , ##__VA_ARGS__);
 
 #define NEOPIN          2
-#define NEOPWR          15
-#define NUMPIXELS       255
+#define NUMPIXELS       64
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, NEOPIN, NEO_GRB + NEO_KHZ800);
 
 bool received_sat = false;
@@ -40,11 +39,6 @@ int rgb_colors[3];
 void setup() {
 	Serial.begin(115200);
 	wifi_connect(); // in wifi_info.h
-
-  // Setup the pwr pin for the propmaker featherwing.
-  pinMode(NEOPWR, OUTPUT);
-  // It is pulled low by default, and needs to be pulled high to enable the neopixels.
-  digitalWrite(NEOPWR, HIGH);
 
   pixels.begin(); 
   for(int i = 0; i < NUMPIXELS; i++)
